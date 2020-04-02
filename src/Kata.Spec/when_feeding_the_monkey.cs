@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using Machine.Specifications;
 
 namespace Kata.Spec
@@ -38,19 +39,34 @@ namespace Kata.Spec
         private static int _result;
         private static Calculator _systemUnderTest;
     }
+    
+    public class when_user_input_two_numbers
+    {
+        private Establish _context = () => { _systemUnderTest = new Calculator(); };
+
+        Because of = () => { _result = _systemUnderTest.Add("1,2"); };
+
+        It should_return_the_sum_of_numbers= () => { _result.Should().Be(3); };
+        private static int _result;
+        private static Calculator _systemUnderTest;
+    }
 
 
     internal class Calculator
     {
-        public int Add()
+        public int Add(string num = "")
         {
-            return 0;
+
+            if (string.IsNullOrEmpty(num) )
+            {
+                return 0;
+            }
+            
+            return Int32.Parse(num);
         }
     }
 
-
     
-    // Given the user input is one number when calculating the sum then it should return the same number. (example "3" should equal 3)
     // Given the user input is two numbers when calculating the sum then it should return the sum of those numbers. (example "1,2" should equal 3)
     // Given the user input is an unknown amount of numbers when calculating the sum then it should return the sum of all the numbers. (example "1,2,3" should equal 6)
     // Given the user input is multiple numbers with new line and comma delimiters when calculating the sum then it should return the sum of all the numbers. (example "1\n2,3" should equal 6)
