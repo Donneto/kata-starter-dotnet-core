@@ -1,4 +1,5 @@
 # Welcome to the Kata Starter for .NET Core
+---- test
 
 ## Preparing:
 Your pair interview will be conducted in .NET Core and C#. If you're not experienced with C#, no worries. This interview will not judge your ability in one language or technology, but how you manage yourself in a situation with new concepts and techniques. Even C# veterans will be challenged by this interview, so everyone will be on a level playing field! 
