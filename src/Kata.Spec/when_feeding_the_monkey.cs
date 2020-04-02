@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
 using Machine.Specifications;
@@ -90,7 +91,6 @@ namespace Kata.Spec
             var numbers = num.Split(new[] {",", "\n"}, StringSplitOptions.None);
             foreach (var number in numbers)
             {
-                
                 sum += int.Parse(number);
             }
 
