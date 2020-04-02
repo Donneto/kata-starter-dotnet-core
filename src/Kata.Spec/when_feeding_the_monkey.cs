@@ -97,7 +97,21 @@ namespace Kata.Spec
         {
             if (string.IsNullOrEmpty(num)) return 0;
             int sum = 0;
-            var numbers = num.Split(new[] {",", "\n"}, StringSplitOptions.None);
+            var delimiter = new []{","};
+            var numbers = new[] {""};
+            var hasCustomEval = num.StartsWith("//");
+            if (hasCustomEval)
+            {
+                delimiter = num.Split("\n", StringSplitOptions.None);
+                delimiter[0] = delimiter[0].Replace("//", "");
+
+                numbers = delimiter[1].Split(delimiter[0], StringSplitOptions.None);
+            }
+            else
+            {
+                numbers = num.Split(new[] {",", "\n"}, StringSplitOptions.None);
+            }
+
             foreach (var number in numbers)
             {
                 sum += int.Parse(number);
