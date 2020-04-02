@@ -86,22 +86,15 @@ namespace Kata.Spec
                 return 0;
             }
 
-            var numbers = num.Split(",");
-
-            if (numbers.Length > 1)
+            int sum = 0;
+            var numbers = num.Split(new[] {",", "\n"}, StringSplitOptions.None);
+            foreach (var number in numbers)
             {
-                var sum = 0;
-
-                foreach (var numero in numbers)
-                {
-                    sum += int.Parse(numero);
-                }
-
-                return sum;
+                
+                sum += int.Parse(number);
             }
 
-            return Int32.Parse(num);
-        }
+            return sum;
     }
     
     // Given the user input is multiple numbers with new line and comma delimiters when calculating the sum then it should return the sum of all the numbers. (example "1\n2,3" should equal 6)
