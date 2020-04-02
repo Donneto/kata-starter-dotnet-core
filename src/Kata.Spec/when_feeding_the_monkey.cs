@@ -73,6 +73,20 @@ namespace Kata.Spec
         private static int _result;
         private static Calculator _systemUnderTest;
     }
+    
+    public class when_user_input_multiple_numbers_and_custom_separator
+    {
+        private Establish _context = () => { _systemUnderTest = new Calculator(); };
+
+        Because of = () => { _result = _systemUnderTest.Add("//;\n1;2"); };
+
+        It should_return_the_sum_of_numbers= () => { _result.Should().Be(3); };
+        private static int _result;
+        private static Calculator _systemUnderTest;
+    }
+
+    
+    
 
 
 
@@ -80,24 +94,18 @@ namespace Kata.Spec
     {
         public int Add(string num = "")
         {
-
-            if (string.IsNullOrEmpty(num) )
-            {
-                return 0;
-            }
-
+            if (string.IsNullOrEmpty(num)) return 0;
             int sum = 0;
             var numbers = num.Split(new[] {",", "\n"}, StringSplitOptions.None);
             foreach (var number in numbers)
             {
-                
                 sum += int.Parse(number);
             }
 
             return sum;
+        }
     }
-    
-    // Given the user input is multiple numbers with new line and comma delimiters when calculating the sum then it should return the sum of all the numbers. (example "1\n2,3" should equal 6)
+
     // Given the user input is multiple numbers with a custom single-character delimiter when calculating the sum then it should return the sum of all the numbers. (example “//;\n1;2” should return 3)
     // Given the user input contains one negative number when calculating the sum then it should throw an exception "negatives not allowed: x" (where x is the negative number).
     // Given the user input contains multiple negative numbers mixed with positive numbers when calculating the sum then it should throw an exception "negatives not allowed: x, y, z" (where x, y, z are only the negative numbers).
